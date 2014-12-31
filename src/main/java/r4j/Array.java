@@ -8,6 +8,11 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+/**
+ * http://www.ruby-doc.org/core-2.2.0/Array.html
+ *
+ * @param <T> Type of objects stored in Array
+ */
 public class Array<T> {
 
     private final List<T> list;

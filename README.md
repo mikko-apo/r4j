@@ -4,9 +4,9 @@ Best of Ruby, on Java
 
 # Why?
 
-Java 8 brought Lambda Expressions and more functional coding style to Java.
+Java 8 brought Lambda Expressions and a more functional coding style to Java.
 Ruby has excellent APIs that leverage functional programming in a straightforward manner.
-r4j brings those APIs to Java.   
+r4j brings those tasty Ruby APIs to Java.   
 
 # Examples
 
@@ -16,9 +16,9 @@ import static r4j.Ruby.*;
 String s = array(1,2,null,3).compact().map(i -> i + 1).join(", "); // "2, 3, 4"
 ```
 
-# How to add new features?
+# How to improve r4j?
 
-1. Participate - Post a feature request @ https://github.com/mikko-apo/r4j/issues
+1. Participate - Post a feature request or comment @ https://github.com/mikko-apo/r4j/issues
 
 And / Or
 
@@ -29,5 +29,3 @@ And / Or
 # Todo
 
 * Maven publishing
-
-# Version history

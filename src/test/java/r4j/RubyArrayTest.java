@@ -9,6 +9,16 @@ import static r4j.Ruby.range;
 public class RubyArrayTest {
 
     @Test
+    public void example1() {
+        assertEquals("2, 3, 4", array(1, 2, null, 3).compact().map(i -> i + 1).join(", "));
+    }
+
+    @Test
+    public void mixedContent() {
+        assertEquals("1, a, 3, 4.0", array(1, "a", null, 3L, 4.0).compact().join(", "));
+    }
+
+    @Test
     public void get() {
         Array arr = array(1, 2, 3, 4);
         assertEquals(1, arr.get(0));
