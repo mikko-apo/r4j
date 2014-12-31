@@ -11,6 +11,13 @@ public class Retry {
     public Retry() {
     }
 
+    public static void sleep(int ms) {
+        try {
+            Thread.sleep(ms);
+        } catch (InterruptedException e1) {
+        }
+    }
+
     public Retry maxTries(int maxTries) {
         if (maxTries < 1) {
             throw new RuntimeException("maxTries needs to be > 0. Was " + maxTries);
@@ -35,10 +42,7 @@ public class Retry {
                     throw new RuntimeException("Retried " + count + " times. Time " + bm.msFromStart() + "ms.", e);
                 } else {
                     if (delayMs > 0) {
-                        try {
-                            Thread.sleep(delayMs);
-                        } catch (InterruptedException e1) {
-                        }
+                        sleep(delayMs);
                     }
                 }
             }

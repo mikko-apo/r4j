@@ -19,6 +19,11 @@ public class ArrayTest {
     }
 
     @Test
+    public void clear() {
+        assertEquals(array(), array(1).clear());
+    }
+
+    @Test
     public void get() {
         Array arr = array(1, 2, 3, 4);
         assertEquals(1, arr.get(0));
@@ -70,6 +75,21 @@ public class ArrayTest {
         Array<Integer> otherArr = array(1, 2, 3, 4).each(i -> newArr.push(i + 1)).map(i -> i + 2);
         assertEquals(array(2, 3, 4, 5), newArr);
         assertEquals(array(3, 4, 5, 6), otherArr);
+    }
+
+    @Test
+    public void index() {
+        assertEquals(0, array(1, 2).index(i -> i == 1));
+        assertEquals(1, array(1, 2).index(i -> i == 2));
+        assertEquals(-1, array(1, 2).index(i -> i == 3));
+    }
+
+    @Test
+    public void insert() {
+        assertEquals(array(3, 4, 1, 2), array(1, 2).insert(0, 3, 4));
+        assertEquals(array(1, 3, 4, 2), array(1, 2).insert(1, 3, 4));
+        assertEquals(array(1, 2, 3, 4), array(1, 2).insert(-1, 3, 4));
+        assertEquals(array(1, 3, 4, 2), array(1, 2).insert(-2, 3, 4));
     }
 
     @Test

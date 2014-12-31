@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Predicate;
 
 /**
  * http://www.ruby-doc.org/core-2.2.0/Array.html
@@ -21,6 +22,15 @@ public class Array<T> implements Enumerable<T> {
 
     public Array(List<T> l) {
         list = new ArrayList<>(l);
+    }
+
+    public static String replaceNull(Object o) {
+        return o != null ? o.toString() : "";
+    }
+
+    public Array<T> clear() {
+        list.clear();
+        return this;
     }
 
     public T get(int i) {
@@ -50,8 +60,33 @@ public class Array<T> implements Enumerable<T> {
         return select(o -> o != null);
     }
 
+    /**
+     * @param predicate Selects item
+     * @return Returns -1 if item not found
+     */
+    public int index(Predicate<? super T> predicate) {
+        for (int i = 0; i < list.size(); i++) {
+            if (predicate.test(list.get(i))) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    @SuppressWarnings("unchecked")
+    public Array<T> insert(int index, T... a) {
+        int i = convertPosition(index);
+        if (index < 0) {
+            i++;
+        }
+        for (T o : a) {
+            list.add(i++, o);
+        }
+        return this;
+    }
+
     public String join(String delimiter) {
-        return String.join(delimiter, map(this::replaceNull).list);
+        return String.join(delimiter, map(Array::replaceNull).list);
     }
 
     @SuppressWarnings("unchecked")
@@ -82,10 +117,6 @@ public class Array<T> implements Enumerable<T> {
             }
         });
         return new Array<>(newArr);
-    }
-
-    private String replaceNull(T o) {
-        return o != null ? o.toString() : "";
     }
 
     private int convertPosition(int i) {

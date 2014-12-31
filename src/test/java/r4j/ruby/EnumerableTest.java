@@ -51,4 +51,14 @@ public class EnumerableTest {
         Array<Integer> arr = array(1, 2, 3, 4);
         assertEquals(array(2, 4), arr.select(i -> (i % 2) == 0));
     }
+
+    @Test
+    public void maxBy() {
+        Array<String> arr = array("a", "ab", "abc", "abcd");
+        assertEquals(array("abcd", "abc"), arr.maxBy(2, String::length));
+        assertEquals("abcd", arr.maxBy(String::length));
+        arr.clear();
+        assertEquals(null, arr.maxBy(String::length));
+        assertEquals(null, arr.maxBy(String::length));
+    }
 }

@@ -1,5 +1,7 @@
 package r4j.ruby;
 
+import r4j.extra.Pair;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -75,5 +77,22 @@ public interface Enumerable<T> {
             }
         });
         return new Array<>(arr);
+    }
+
+    default T maxBy(Function<? super T, ? extends Number> mapper) {
+        return maxBy(1, mapper).get(0);
+    }
+
+    default Array<T> maxBy(int maxCount, Function<? super T, ? extends Number> mapper) {
+        Array<Pair<Long, T>> arr = new Array<Pair<Long, T>>();
+        each(o -> {
+            long weight = mapper.apply(o).longValue();
+            int index = arr.index(p -> p.key < weight);
+            arr.insert(index, new Pair<>(weight, o));
+            if (arr.count() > maxCount) {
+                arr.pop();
+            }
+        });
+        return arr.map(p -> p.value);
     }
 }
