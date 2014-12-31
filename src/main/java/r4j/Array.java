@@ -14,12 +14,13 @@ public class Array<T> implements Enumerable<T> {
 
     private final List<T> list;
 
+    @SafeVarargs
     public Array(T... a) {
-        list = new ArrayList<T>(Arrays.asList(a));
+        list = new ArrayList<>(Arrays.asList(a));
     }
 
     public Array(List<T> l) {
-        list = new ArrayList<T>(l);
+        list = new ArrayList<>(l);
     }
 
     public T get(int i) {
@@ -50,9 +51,10 @@ public class Array<T> implements Enumerable<T> {
     }
 
     public String join(String delimiter) {
-        return String.join(delimiter, map(o -> replaceNull(o)).list);
+        return String.join(delimiter, map(this::replaceNull).list);
     }
 
+    @SuppressWarnings("unchecked")
     public Array<T> push(T... a) {
         list.addAll(Arrays.asList(a));
         return this;
@@ -79,7 +81,7 @@ public class Array<T> implements Enumerable<T> {
                 newArr.add(o);
             }
         });
-        return new Array<T>(newArr);
+        return new Array<>(newArr);
     }
 
     private String replaceNull(T o) {

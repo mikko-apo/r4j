@@ -64,7 +64,7 @@ public interface Enumerable<T> {
     default <R> Array<R> map(Function<? super T, ? extends R> mapper) {
         List<R> arr = new ArrayList<>();
         each(o -> arr.add(mapper.apply(o)));
-        return new Array<R>(arr);
+        return new Array<>(arr);
     }
 
     default Array<T> select(Predicate<? super T> predicate) {
@@ -74,6 +74,6 @@ public interface Enumerable<T> {
                 arr.add(o);
             }
         });
-        return new Array<T>(arr);
+        return new Array<>(arr);
     }
 }
