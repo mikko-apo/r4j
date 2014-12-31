@@ -72,6 +72,16 @@ public class Array<T> implements Enumerable<T> {
         return ret;
     }
 
+    public Array<T> uniq() {
+        ArrayList<T> newArr = new ArrayList<>();
+        each(o -> {
+            if (!newArr.contains(o)) {
+                newArr.add(o);
+            }
+        });
+        return new Array<T>(newArr);
+    }
+
     private String replaceNull(T o) {
         return o != null ? o.toString() : "";
     }

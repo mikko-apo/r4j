@@ -71,4 +71,9 @@ public class ArrayTest {
         assertEquals(array(2, 3, 4, 5), newArr);
         assertEquals(array(3, 4, 5, 6), otherArr);
     }
+
+    @Test
+    public void uniq() {
+        assertEquals(array(1, 2), array(1, 1, 2, 1, 2).uniq());
+    }
 }
