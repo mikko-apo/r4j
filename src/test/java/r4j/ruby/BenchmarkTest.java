@@ -9,9 +9,9 @@ import static r4j.extra.Retry.sleep;
 public class BenchmarkTest {
     @Test
     public void report() {
-        String report = Benchmark.bmReport(reporter -> {
-            reporter.report("a", () -> sleep(10));
-            reporter.report("bb", () -> sleep(5));
+        String report = Benchmark.bmReport(bm -> {
+            bm.report("a", () -> sleep(10));
+            bm.report("bb", () -> sleep(5));
         });
         assertThat(report, containsString("a  "));
         assertThat(report, containsString("bb "));
