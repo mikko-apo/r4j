@@ -5,7 +5,7 @@ Best of Ruby, on Java
 # Why?
 
 Java 8 brought Lambda Expressions and a more functional coding style to Java.
-Ruby has excellent APIs that leverage functional programming in a straightforward manner.
+Ruby has useful APIs that leverage functional programming in a straightforward manner.
 r4j brings those tasty Ruby APIs to Java.   
 
 # Examples
