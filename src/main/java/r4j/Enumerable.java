@@ -1,8 +1,11 @@
 package r4j;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 /**
@@ -44,5 +47,21 @@ public interface Enumerable<T> {
 
     default int count(T a) {
         return count(o -> o.equals(a));
+    }
+
+    default <R> Array<R> map(Function<? super T, ? extends R> mapper) {
+        List<R> arr = new ArrayList<>();
+        each(o -> arr.add(mapper.apply(o)));
+        return new Array<R>(arr);
+    }
+
+    default Array<T> select(Predicate<? super T> predicate) {
+        List<T> arr = new ArrayList<>();
+        each(o -> {
+            if (predicate.test(o)) {
+                arr.add(o);
+            }
+        });
+        return new Array<T>(arr);
     }
 }

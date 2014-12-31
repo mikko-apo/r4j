@@ -32,4 +32,16 @@ public class EnumerableTest {
         assertEquals(0, array(1).count(2));
         assertEquals(0, array(1).count(o -> o % 2 == 0));
     }
+
+    @Test
+    public void map() {
+        Array<Integer> arr = array(1, 2, 3, 4);
+        assertEquals(array(2, 3, 4, 5), arr.map(i -> i + 1));
+    }
+
+    @Test
+    public void select() {
+        Array<Integer> arr = array(1, 2, 3, 4);
+        assertEquals(array(2, 4), arr.select(i -> (i % 2) == 0));
+    }
 }

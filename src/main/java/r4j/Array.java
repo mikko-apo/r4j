@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 /**
  * http://www.ruby-doc.org/core-2.2.0/Array.html
@@ -40,14 +37,6 @@ public class Array<T> implements Enumerable<T> {
 
     public Array<T> get(Range range) {
         return get(range.first, convertPosition(range.first) + range.last - 1);
-    }
-
-    public <R> Array<R> map(Function<? super T, ? extends R> mapper) {
-        return new Array<>(list.stream().map(mapper).collect(Collectors.toList()));
-    }
-
-    public Array<T> select(Predicate<? super T> predicate) {
-        return new Array<T>(list.stream().filter(predicate).collect(Collectors.toList()));
     }
 
     @Override

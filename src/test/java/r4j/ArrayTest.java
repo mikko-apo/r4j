@@ -36,18 +36,6 @@ public class ArrayTest {
     }
 
     @Test
-    public void map() {
-        Array<Integer> arr = array(1, 2, 3, 4);
-        assertEquals(array(2, 3, 4, 5), arr.map(i -> i + 1));
-    }
-
-    @Test
-    public void select() {
-        Array<Integer> arr = array(1, 2, 3, 4);
-        assertEquals(array(2, 4), arr.select(i -> (i % 2) == 0));
-    }
-
-    @Test
     public void compact() {
         Array<Integer> arr = array(1, null, 3, 4);
         assertEquals(array(1, 3, 4), arr.compact());
