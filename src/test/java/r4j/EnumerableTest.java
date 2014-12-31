@@ -34,6 +34,13 @@ public class EnumerableTest {
     }
 
     @Test
+    public void find() {
+        assertEquals(null, array().find(notNull));
+        assertEquals(1, array(1).count(notNull));
+        assertEquals(1, array(null, 1).count(notNull));
+    }
+
+    @Test
     public void map() {
         Array<Integer> arr = array(1, 2, 3, 4);
         assertEquals(array(2, 3, 4, 5), arr.map(i -> i + 1));

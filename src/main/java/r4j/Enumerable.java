@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -47,6 +48,17 @@ public interface Enumerable<T> {
 
     default int count(T a) {
         return count(o -> o.equals(a));
+    }
+
+    default T find(Predicate<? super T> predicate) {
+        AtomicReference<T> ret = new AtomicReference<>(null);
+        AtomicBoolean hasBeenSet = new AtomicBoolean(false);
+        each(o -> {
+            if (!hasBeenSet.get() && predicate.test(o)) {
+                ret.set(o);
+            }
+        });
+        return ret.get();
     }
 
     default <R> Array<R> map(Function<? super T, ? extends R> mapper) {
