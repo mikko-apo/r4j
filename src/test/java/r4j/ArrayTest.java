@@ -6,7 +6,7 @@ import static org.junit.Assert.assertEquals;
 import static r4j.Ruby.array;
 import static r4j.Ruby.range;
 
-public class RubyArrayTest {
+public class ArrayTest {
 
     @Test
     public void example1() {
@@ -79,7 +79,8 @@ public class RubyArrayTest {
     @Test
     public void each() {
         Array<Integer> newArr = new Array<Integer>();
-        array(1, 2, 3, 4).each(i -> newArr.push(i + 1));
+        Array<Integer> otherArr = array(1, 2, 3, 4).each(i -> newArr.push(i + 1)).map(i -> i + 2);
         assertEquals(array(2, 3, 4, 5), newArr);
+        assertEquals(array(3, 4, 5, 6), otherArr);
     }
 }

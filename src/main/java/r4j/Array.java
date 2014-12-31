@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
  *
  * @param <T> Type of objects stored in Array
  */
-public class Array<T> {
+public class Array<T> implements Enumerable<T> {
 
     private final List<T> list;
 
@@ -50,8 +50,10 @@ public class Array<T> {
         return new Array<T>(list.stream().filter(predicate).collect(Collectors.toList()));
     }
 
-    public void each(Consumer<? super T> action) {
+    @Override
+    public Array<T> each(Consumer<? super T> action) {
         list.stream().forEach(action);
+        return this;
     }
 
     public Array<T> compact() {
