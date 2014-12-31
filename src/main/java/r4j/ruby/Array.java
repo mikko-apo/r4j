@@ -1,4 +1,4 @@
-package r4j;
+package r4j.ruby;
 
 import java.util.ArrayList;
 import java.util.Arrays;

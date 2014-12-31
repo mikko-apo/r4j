@@ -1,4 +1,4 @@
-package r4j;
+package r4j.ruby;
 
 import org.junit.Test;
 
@@ -36,8 +36,8 @@ public class EnumerableTest {
     @Test
     public void find() {
         assertEquals(null, array().find(notNull));
-        assertEquals(1, array(1).count(notNull));
-        assertEquals(1, array(null, 1).count(notNull));
+        assertEquals("a", array("a").find(notNull));
+        assertEquals("a", array(null, "a").find(notNull));
     }
 
     @Test

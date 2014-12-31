@@ -1,4 +1,4 @@
-package r4j;
+package r4j.ruby;
 
 public class Range {
 
