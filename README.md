@@ -1,8 +1,4 @@
-# r4j
-
-Best of Ruby, on Java
-
-# Why?
+# r4j - Best of Ruby, on Java
 
 Java 8 brought Lambda Expressions and a more functional coding style to Java.
 Ruby has useful APIs that leverage functional programming in a straightforward manner.
@@ -33,7 +29,7 @@ Extra functionality not implemented by the Ruby stdlib
 ```java
 import r4j.extra.Retry;
 
-Object result = new Retry().maxTries(5).retry(() -> unreliableOperation())
+OperationResult result = new Retry().maxTries(5).retry(() -> unreliableOperation())
 
 ```
 
