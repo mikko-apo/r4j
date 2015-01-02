@@ -6,15 +6,14 @@ r4j brings those tasty Ruby APIs to Java.
 
 # Examples
 
-Array manipulations
+Array manipulations - http://www.ruby-doc.org/core-2.2.0/Array.html
 ```java
 import static r4j.Ruby.*;
 
 String s = array(1,2,null,3).compact().map(i -> i + 1).join(", "); // "2, 3, 4"
-
 ```
 
-Benchmark
+Benchmark - http://www.ruby-doc.org/stdlib-2.2.0/libdoc/benchmark/rdoc/Benchmark.html
 ```java
 import r4j.Ruby.Benchmark;
 
@@ -22,17 +21,14 @@ String report = Benchmark.bm(bm -> {
     bm.report("a", () -> sleep(10));
     bm.report("bb", () -> sleep(5));
 });
-
 ```
 
 Extra functionality not implemented by the Ruby stdlib
 ```java
 import r4j.extra.Retry;
 
-OperationResult result = new Retry().maxTries(5).retry(() -> unreliableOperation())
-
+OperationResult result = new Retry().maxTries(5).retry(() -> unreliableOperation());
 ```
-
 
 # How to improve r4j?
 
